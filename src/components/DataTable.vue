@@ -4,13 +4,16 @@
       <thead>
         <tr>
           <th v-for="column in dataTable.columns"
-              @click="sortBy(column)">{{column.text}}</th>
+              @click="sortBy(column)"
+              :class="{sort: isSortable(column), 
+                       desc: sort.sortBy === column.value && sort.desc,
+                       asc: sort.sortBy === column.value && !sort.desc}">{{column.text}}</th>
         </tr>
       </thead>
 
       <tbody>
         <tr v-for="row in dataTable.rows | filterRows dataTable.options currentPage" track-by="$index">
-          <td v-for="item in row">{{item.text}}</td>
+          <td v-for="item in row">{{item}}</td>
         </tr>
       </tbody>
     </table>
@@ -39,12 +42,18 @@
 </template>
 
 <script>
+import easySort from 'easysort';
+
 export default {
   props: ['dataTable'],
 
   data() {
     return {
-      currentPage: 1
+      currentPage: 1,
+      sort: {
+        sortBy: '',
+        desc: true
+      }
     }
   },
 
@@ -64,6 +73,7 @@ export default {
 
   filters: {
     filterRows(rows, options, currentPage) {
+      rows = this.sort.sortBy ? this.sortRows(rows, this.sort.sortBy) : rows;
       return this.getPageRows(rows, currentPage, options.pageCount);
     }
   },
@@ -87,6 +97,30 @@ export default {
           if(this.currentPage == page) return ;
           this.currentPage = page;
       }
+    },
+
+    sortBy(column) {
+      if(!column.sortable || !this.dataTable.options.sortable) return ;
+
+      if(column.value === this.sort.sortBy) {
+        this.sort.desc = !this.sort.desc;
+      }else {
+        this.sort.sortBy = column.value;
+      }
+    },
+
+    sortRows(rows, sortBy) {
+      const arr = rows.slice(0);
+
+      return arr.sort((a, b) => {
+        const r = this.sort.desc ? a[sortBy] < b[sortBy] : a[sortBy] > b[sortBy];
+
+        return r ? 1 : -1;
+      })
+    },
+
+    isSortable(column) {
+      return column.sortable && this.dataTable.options.sortable;
     }
   }
 }
@@ -94,6 +128,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  $sortSize: 5px;
+
+  @mixin singleSortIcon($borderColor) {
+    content: "";
+    position: absolute;
+    border-left: $sortSize solid transparent;
+    border-right: $sortSize solid transparent;
+    border-bottom: 2 * $sortSize solid $borderColor; 
+  }
+
   .v-table {
     table {
       width: 100%;
@@ -103,10 +147,53 @@ export default {
         border-bottom: 1px solid #111111;
 
         th {
+          position: relative;
           padding: 10px 18px;
           text-align: left;
           background-color: #CBCCCD;
           font-weight: bold;
+
+          &.sort {
+            cursor: pointer;
+            
+            &::after {
+              @include singleSortIcon(#FAFAFA);
+              right: $sortSize;
+              top: 50%;
+              margin-top: -(2 * $sortSize);
+            }
+            &::before {
+              @include singleSortIcon(#FAFAFA);
+              right: $sortSize;
+              top: 50%;
+              margin-top: 3px;
+              transform: rotate(180deg);
+            }
+
+            &.desc {
+              &::after {
+                display: none;
+              }
+              &::before {
+                @include singleSortIcon(#333);
+                right: $sortSize;
+                top: 50%;
+                margin-top: -$sortSize;
+              }
+            }
+
+            &.asc {
+              &::before {
+                display: none;
+              }
+              &::after {
+                @include singleSortIcon(#333);
+                right: $sortSize;
+                top: 50%;
+                margin-top: -$sortSize;
+              }
+            }
+          }
         }
       }
 

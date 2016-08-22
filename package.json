@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "Galen <galen.yuan@mobilenowgroup.com>",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "test": ""
   },
   "dependencies": {
-    "vue": "^1.0.21",
-    "babel-runtime": "^6.0.0"
+    "babel-runtime": "^6.0.0",
+    "vue": "^1.0.21"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
