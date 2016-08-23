@@ -13,7 +13,9 @@
 
       <tbody>
         <tr v-for="row in dataTable.rows | filterRows dataTable.options currentPage" track-by="$index">
-          <td v-for="item in row">{{item}}</td>
+          <td v-for="(key, item) in row">
+            <span>{{item.value}}</span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -106,6 +108,7 @@ export default {
         this.sort.desc = !this.sort.desc;
       }else {
         this.sort.sortBy = column.value;
+        this.sort.desc = true;
       }
     },
 
@@ -113,7 +116,7 @@ export default {
       const arr = rows.slice(0);
 
       return arr.sort((a, b) => {
-        const r = this.sort.desc ? a[sortBy] < b[sortBy] : a[sortBy] > b[sortBy];
+        const r = this.sort.desc ? a[sortBy].value < b[sortBy].value : a[sortBy].value > b[sortBy].value;
 
         return r ? 1 : -1;
       })
@@ -155,7 +158,7 @@ export default {
 
           &.sort {
             cursor: pointer;
-            
+
             &::after {
               @include singleSortIcon(#FAFAFA);
               right: $sortSize;

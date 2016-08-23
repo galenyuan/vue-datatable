@@ -51,11 +51,24 @@ export default {
   ready() {
     for(let i = 0; i< 20; i++) {
       const item = {
-        id: i + 1,
-        name: 'Guy' + (i + 1),
-        sex: 'man',
-        age: 23,
-        note: ''
+        id: {
+          value: i + 1,
+          editable: false 
+        },
+        name: {
+          value: 'Guy' + (i + 1),
+          editable: false
+        },
+        sex: {
+          value: 'man',
+          editable: true 
+        },
+        age: {
+          value: 23
+        },
+        note: {
+          value: ''
+        }
       }
 
       this.tableData.rows.push(item);
