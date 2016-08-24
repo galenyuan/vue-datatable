@@ -13,8 +13,13 @@
 
       <tbody>
         <tr v-for="row in dataTable.rows | filterRows dataTable.options currentPage" track-by="$index">
-          <td v-for="(key, item) in row">
-            <span>{{item.value}}</span>
+          <td v-for="(key, item) in row" @click="editField(item, key)">
+            <span v-if="!item.editing">{{item.value}}</span>
+            <template v-if="isEditable(item, key)">
+              <input type="text" v-model="item.tmpValue">
+              <button type="button" @click.stop="saveEdit(item)">Save</button>
+              <button type="button" @click.stop="cancelEdit(item)">Cancel</button>
+            </template>
           </td>
         </tr>
       </tbody>
@@ -52,6 +57,7 @@ export default {
   data() {
     return {
       currentPage: 1,
+      rows: [],
       sort: {
         sortBy: '',
         desc: true
@@ -77,6 +83,37 @@ export default {
     filterRows(rows, options, currentPage) {
       rows = this.sort.sortBy ? this.sortRows(rows, this.sort.sortBy) : rows;
       return this.getPageRows(rows, currentPage, options.pageCount);
+    }
+  },
+
+  watch: {
+    'dataTable.rows'(rows) {
+      rows.forEach((row, index) => {
+        for(let key in row) {
+          const column = this.dataTable.columns.filter((column) => {
+            return column.value === key;
+          })[0];
+          
+          row[key] = Object.assign({
+            editable: column.editable,
+            editing: false,
+            tmpValue: ''
+          }, row[key]);
+        }
+
+        this.dataTable.rows[index] = row;
+      });
+    },
+
+    'dataTable.columns'(columns) {
+      columns.forEach((column, index) => {
+        column = Object.assign({
+          editable: false,
+          sortable: false
+        }, column);
+
+        this.dataTable.columns[index] = column;
+      })
     }
   },
 
@@ -112,6 +149,24 @@ export default {
       }
     },
 
+    editField(field, key) {
+      if(!this.isEditable(field, key, true)) return ;
+
+      field.tmpValue = field.value;
+      field.editing = true;
+    },
+
+    saveEdit(field) {
+      field.value = field.tmpValue;
+      field.editing = false;
+      field.tmpValue = '';
+    },
+
+    cancelEdit(field) {
+      field.editing = false;
+      field.tmpValue = '';
+    },
+
     sortRows(rows, sortBy) {
       const arr = rows.slice(0);
 
@@ -124,6 +179,17 @@ export default {
 
     isSortable(column) {
       return column.sortable && this.dataTable.options.sortable;
+    },
+
+    isEditable(field, key, beforeEditing) {
+      const column = this.dataTable.columns.filter((column) => {
+        return column.value === key;
+      })[0];
+      if(beforeEditing) {
+        return field.editable && this.dataTable.options.editable && column.editable;
+      }else {
+        return field.editable && this.dataTable.options.editable && field.editing && column.editable;
+      }
     }
   }
 }

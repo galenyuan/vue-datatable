@@ -26,7 +26,8 @@ export default {
           {
             value: 'name',
             text: '名字',
-            sortable: true
+            sortable: true,
+            editable: true
           },
           {
             value: 'sex',
@@ -56,8 +57,7 @@ export default {
           editable: false 
         },
         name: {
-          value: 'Guy' + (i + 1),
-          editable: false
+          value: 'Guy' + (i + 1)
         },
         sex: {
           value: 'man',
