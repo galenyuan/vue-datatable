@@ -1,5 +1,15 @@
 <template>
   <div class="v-table">
+    <div class="v-table-header">
+      Show
+      <select v-model="dataTable.options.pageCount">
+        <option>5</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+      </select>
+      items each page
+    </div>
     <table>
       <thead>
         <tr>
@@ -34,12 +44,19 @@
         <a class="v-table-footer-page-btn" href="javascript:;"
            @click="togglePage('prev')"
            :class="{disabled: currentPage == 1}">Prev</a>
-
+        <a class="v-table-footer-page-btn" href="javascript:;"
+           :class="{current: currentPage == 1}"
+           @click="togglePage(1)">1</a>
+        <span v-if="currentPage >= 5 && lastPage > 10">...</span>
         <a class="v-table-footer-page-btn" href="javascript:;"
            :class="{current: currentPage == page + 1}"
            @click="togglePage(page + 1)"
-           v-for="page in lastPage">{{page + 1}}</a>
-
+           v-for="page in centerPartPage">{{page + 1}}</a>
+        <span v-if="lastPage > 10 && lastPage - currentPage > 5">...</span>
+        <a class="v-table-footer-page-btn" href="javascript:;"
+           :class="{current: currentPage == page + 1}"
+           @click="togglePage(page + 1)"
+           v-for="page in lastPartPage">{{page + 1}}</a>
         <a class="v-table-footer-page-btn" href="javascript:;"
            @click="togglePage('next')"
            :class="{disabled: currentPage == lastPage}">Next</a>
@@ -49,7 +66,6 @@
 </template>
 
 <script>
-import easySort from 'easysort';
 
 export default {
   props: ['dataTable'],
@@ -68,6 +84,43 @@ export default {
   computed: {
     lastPage() {
       return Math.ceil(this.dataTable.rows.length / this.dataTable.options.pageCount);
+    },
+
+    centerPartPage() {
+      if(this.lastPage > 10 && this.currentPage >= 5) {
+        if(this.lastPage - this.currentPage > 5) {
+          return this.currentPage === this.lastPage ? [this.currentPage - 3, this.currentPage - 2, this.currentPage - 1] : [this.currentPage - 2, this.currentPage - 1, this.currentPage];
+        }else {
+          const r = [];
+
+          for(let i = this.lastPage - 6; i < this.lastPage; i++) {
+            r.push(i);
+          }
+          return r;
+        }
+      }else if(this.lastPage > 10) {
+        const r = [];
+
+        for(let i = 1; i < 5; i++) {
+          r.push(i);
+        }
+        return r;
+      }else {
+        const r = [];
+
+        for(let i = 1; i < this.lastPage; i++) {
+          r.push(i);
+        }
+        return r;
+      }
+    },
+
+    lastPartPage() {
+      if(this.lastPage > 10 && this.lastPage - this.currentPage > 5) {
+        return [this.lastPage - 1];
+      }else {
+        return [];
+      }
     },
 
     firstRow() {
@@ -311,11 +364,16 @@ export default {
       &-page {
         font-size: 0;
         float: right;
-
+        
+        span {
+          display: inline-block;
+          font-size: 1rem;
+          padding: 10px 15px;
+        }
+        
         &-btn {
           display: inline-block;
           box-sizing: border-box;
-          margin-right: 5px;
           padding: 10px 15px;
           text-decoration: none;
           color: #000;
