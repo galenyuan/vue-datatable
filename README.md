@@ -1,27 +1,53 @@
 # vue-datatable
 
-> A Vue.js project
+> A datatable component build with Vuejs.
 
-## Build Setup
+##Usage
+```javascript
+<data-table :data-table="tableData"></data-table>
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+import DataTable from 'vue-datatable';
 
-# build for production with minification
-npm run build
+export default {
+  data() {
+    return {
+      tableData: {
+        options: {
+        	//Global sort option
+          sortable: true,
+          //Global edit option
+          editable: true,
+          //How many items will be shown in each page
+          pageCount: 10
+        },
 
-# run unit tests
-npm run unit
+        columns: [
+          {
+            value: 'id',
+            text: 'ID',
+            //If this column is sortable
+            sortable: true,
+            //If this column is editable
+            editable: false
+          }
+        ],
 
-# run e2e tests
-npm run e2e
+        rows: [
+					{
+						id: {
+							value: 1,
+							//If this field is editable
+							editable: false
+						}
+					}
+        ]
+      }
+    }
+  },
 
-# run all tests
-npm test
+  components: {
+    DataTable
+  }
+}
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
