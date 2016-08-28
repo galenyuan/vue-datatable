@@ -346,16 +346,24 @@ export default {
         }
       }
     }
-
-    & &-footer {
+    
+    & &-header, & &-footer {
       display: table;
-      margin-top: 10px;
+      height: 40px;
       width: 100%;
+      line-height: 40px;
 
       &::after {
         content: '';
         clear: both;
       }
+    }
+    & &-header {
+      
+    }
+
+    & &-footer {
+      margin-top: 10px;
 
       &-info {
         float: left;
@@ -373,8 +381,10 @@ export default {
         
         &-btn {
           display: inline-block;
+          height: 40px;
           box-sizing: border-box;
-          padding: 10px 15px;
+          padding: 0px 15px;
+          line-height: 40px;
           text-decoration: none;
           color: #000;
           border-radius: 2px;
