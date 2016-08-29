@@ -1,14 +1,20 @@
 <template>
   <div class="v-table">
     <div class="v-table-header">
-      Show
-      <select v-model="dataTable.options.pageCount">
-        <option>5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
-      items each page
+      <div class="v-table-header-count">
+        Show
+        <select v-model="dataTable.options.pageCount">
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+        </select>
+        items each page
+      </div>
+
+      <div class="v-table-header-search">
+        Search <input type="text" v-model="searchBy">
+      </div>
     </div>
     <table>
       <thead>
@@ -22,7 +28,7 @@
       </thead>
 
       <tbody>
-        <tr v-for="row in dataTable.rows | filterRows dataTable.options currentPage" track-by="$index">
+        <tr v-for="row in filteredRows | pagination currentPage dataTable.optionts.pageCount" track-by="$index">
           <td v-for="(key, item) in row" @click="editField(item, key)">
             <span v-if="!item.editing">{{item.value}}</span>
             <template v-if="isEditable(item, key)">
@@ -37,7 +43,7 @@
 
     <div class="v-table-footer">
       <div class="v-table-footer-info">
-        Showing {{firstRow + 1}} to {{lastRow}} of {{dataTable.rows.length}} items
+        Showing {{firstRow + 1}} to {{lastRow}} of {{filteredRows.length}} items
       </div>
 
       <div class="v-table-footer-page" v-if="lastPage !== 1">
@@ -73,6 +79,7 @@ export default {
   data() {
     return {
       currentPage: 1,
+      searchBy: '',
       rows: [],
       sort: {
         sortBy: '',
@@ -82,8 +89,12 @@ export default {
   },
 
   computed: {
+    filteredRows() {
+      return this.filterRows(this.dataTable.rows, this.dataTable.options, this.currentPage);
+    },
+
     lastPage() {
-      return Math.ceil(this.dataTable.rows.length / this.dataTable.options.pageCount);
+      return Math.ceil(this.filteredRows.length / this.dataTable.options.pageCount);
     },
 
     centerPartPage() {
@@ -128,14 +139,7 @@ export default {
     },
 
     lastRow() {
-      return this.dataTable.options.pageCount * this.currentPage > this.dataTable.rows.length ? this.dataTable.rows.length : this.dataTable.options.pageCount * this.currentPage;
-    }
-  },
-
-  filters: {
-    filterRows(rows, options, currentPage) {
-      rows = this.sort.sortBy ? this.sortRows(rows, this.sort.sortBy) : rows;
-      return this.getPageRows(rows, currentPage, options.pageCount);
+      return this.dataTable.options.pageCount * this.currentPage > this.filteredRows.length ? this.filteredRows.length : this.dataTable.options.pageCount * this.currentPage;
     }
   },
 
@@ -170,7 +174,38 @@ export default {
     }
   },
 
+  filters: {
+    pagination(rows, currentPage, pageCount) {
+      return this.getPageRows(rows, currentPage, pageCount);
+    }
+  },
+
   methods: {
+    filterRows(rows, options, currentPage) {
+      rows = this.sort.sortBy ? this.sortRows(rows, this.sort.sortBy) : rows;
+      
+      if(this.searchBy !== '') {
+        this.currentPage = 1;
+
+        rows = rows.filter((row) => {
+          let r = false;
+
+          for(let key in row) {
+            if(row[key].value
+              .toString()
+              .toLowerCase()
+              .indexOf(this.searchBy.toLowerCase()) !== -1) {
+              r = true;
+            }
+          }
+
+          return r;
+        });
+      }
+
+      return rows;
+    },
+
     getPageRows(rows) {
       return rows.slice(this.firstRow, this.lastRow);
     },
@@ -358,8 +393,15 @@ export default {
         clear: both;
       }
     }
+
     & &-header {
-      
+      &-count {
+        float: left;
+      }
+
+      &-search {
+        float: right;
+      }
     }
 
     & &-footer {
