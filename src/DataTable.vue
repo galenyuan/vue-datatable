@@ -72,7 +72,6 @@
 </template>
 
 <script>
-
 export default {
   props: ['dataTable'],
 
