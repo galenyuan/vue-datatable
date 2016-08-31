@@ -3,6 +3,11 @@
 > A datatable component build with Vuejs.
 
 ##Usage
+```bash
+npm install --save vue-datatable
+```
+Vue-loader and Babel is required(maybe will release ES5 and JavaScript file later :P)
+
 ```javascript
 <data-table :data-table="tableData"></data-table>
 

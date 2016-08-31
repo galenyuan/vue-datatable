@@ -1,13 +1,23 @@
 {
   "name": "vue-datatable",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
+  "version": "1.0.1",
+  "description": "Datatable for Vuejs",
   "author": "Galen <galen.yuan@mobilenowgroup.com>",
   "private": false,
-  "scripts": {
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "test": ""
+  "main": "./src/DataTable.vue",
+  "license": "MIT",
+  "keywords": [
+    "Vue",
+    "Datatable",
+    "Table Component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galenyuan/vue-datatable.git"
+  },
+  "homepage": "https://github.com/galenyuan/vue-datatable",
+  "bugs": {
+    "url": "https://github.com/galenyuan/vue-datatable/issues"
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
