@@ -1,11 +1,15 @@
 {
   "name": "vue-datatable",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Datatable for Vuejs",
   "author": "Galen <galen.yuan@mobilenowgroup.com>",
   "private": false,
   "main": "./src/DataTable.vue",
   "license": "MIT",
+  "scripts": {
+    "demo": "cd docs && webpack",
+    "build": "webpack" 
+  },
   "keywords": [
     "Vue",
     "Datatable",

@@ -3,7 +3,7 @@
     <div class="v-table-header">
       <div class="v-table-header-count">
         Show
-        <select v-model="dataTable.options.pageCount">
+        <select v-model="dataTable.options.pageCount" @change="onChangePageCount()">
           <option>5</option>
           <option>10</option>
           <option>15</option>
@@ -180,6 +180,10 @@ export default {
   },
 
   methods: {
+    onChangePageCount() {
+      this.currentPage = 1;
+    },
+
     filterRows(rows, options, currentPage) {
       rows = this.sort.sortBy ? this.sortRows(rows, this.sort.sortBy) : rows;
       

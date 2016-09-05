@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import DataTable from '../src/DataTable.vue';
+import DataTable from 'vue-datatable';
 import Chance from 'chance';
 
 (function(){
