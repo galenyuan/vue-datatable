@@ -17,7 +17,7 @@
     "chance": "^1.0.4",
     "mockjs": "^1.0.1-beta3",
     "vue": "^1.0.26",
-    "vue-datatable": "^1.0.2"
+    "vue-datatable": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

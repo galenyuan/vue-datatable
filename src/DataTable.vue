@@ -227,6 +227,9 @@ export default {
           if(this.currentPage == page) return ;
           this.currentPage = page;
       }
+      if(this.dataTable.onPageChanged) {
+        this.dataTable.onPageChanged(this.currentPage);
+      }
     },
 
     sortBy(column) {
@@ -289,6 +292,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   $sortSize: 5px;
+  $tableBorderColor: #111111;
 
   @mixin singleSortIcon($borderColor) {
     content: "";
@@ -304,7 +308,7 @@ export default {
       border-collapse:collapse;
 
       thead {
-        border-bottom: 1px solid #111111;
+        border-bottom: 1px solid $tableBorderColor;
 
         th {
           position: relative;
@@ -358,7 +362,7 @@ export default {
       }
 
       tbody {
-        border-bottom: 1px solid #111111;
+        border-bottom: 1px solid $tableBorderColor;
 
         tr {
           background-color: #fff;

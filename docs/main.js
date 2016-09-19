@@ -41,7 +41,11 @@ import Chance from 'chance';
                     }
                 ],
 
-                rows: []
+                rows: [],
+
+                onPageChanged(page) {
+                    console.log('Current page is ' + page);
+                }
             }
         },
 

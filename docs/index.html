@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue Datatable</title>
+    <style>
+    	.banner {
+				position: fixed;
+				width: 200px;
+				background-color: #333;
+				top: 25px;
+				left: -38px;
+				transform: rotate(-37deg);
+				color: white;
+				text-align: center;
+				line-height: 40px;
+    	}
+
+    	.v-table {
+    		margin-top: 120px;
+    	}
+    </style>
 </head>
 <body>
-    <data-table :data-table="tableData"></data-table>
+		<a class="banner" href="https://github.com/galenyuan/vue-datatable/tree/master/docs">Source Code</a>
+		<data-table :data-table="tableData"></data-table>
 
     <script src="build/app.js"></script>
 </body>
