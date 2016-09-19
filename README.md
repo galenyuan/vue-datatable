@@ -26,7 +26,11 @@ export default {
           //Global edit option
           editable: true,
           //How many items will be shown in each page
-          pageCount: 10
+          pageCount: 10,
+          //Callback of change page
+          onPageChanged(page) {
+            console.log(page);
+          }
         },
 
         columns: [
