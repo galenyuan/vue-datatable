@@ -3549,6 +3549,11 @@
 
 	        _this2.dataTable.columns[index] = column;
 	      });
+	    },
+	    'searchBy': function searchBy(val) {
+	      if (val) {
+	        this.currentPage = 1;
+	      }
 	    }
 	  },
 
@@ -3568,8 +3573,6 @@
 	      rows = this.sort.sortBy ? this.sortRows(rows, this.sort.sortBy) : rows;
 
 	      if (this.searchBy !== '') {
-	        this.currentPage = 1;
-
 	        rows = rows.filter(function (row) {
 	          var r = false;
 
