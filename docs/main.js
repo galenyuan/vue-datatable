@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import DataTable from 'vue-datatable';
+import DataTable from '../src/DataTable.vue';
 import Chance from 'chance';
 
 (function(){
@@ -38,6 +38,20 @@ import Chance from 'chance';
                         text: 'Sex',
                         sortable: true,
                         editable: true
+                    },
+                    {
+                        value: 'link',
+                        text: 'Link',
+                        sortable: false,
+                        editable: false,
+                        isHTML: true
+                    },
+                    {
+                        value: 'action',
+                        text: 'Action',
+                        sortable: false,
+                        editable: false,
+                        isButton: true
                     }
                 ],
 
@@ -72,6 +86,33 @@ import Chance from 'chance';
                     sex: {
                         value: chance.gender(),
                         editable: chance.bool
+                    },
+
+                    link: {
+                        value: `<a href="${chance.url()}">${chance.url()}</a>`
+                    },
+
+                    action: {
+                        value: [
+                            {
+                                text: 'action1',
+                                class: ['red'],
+                                func: function(event, column, field) {
+                                    console.log('event', event);
+                                    console.log('column', column);
+                                    console.log('field', field);
+                                }
+                            },
+                            {
+                                text: 'action2',
+                                class: ['green'],
+                                func: function(event, column, field) {
+                                    console.log('event', event);
+                                    console.log('column', column);
+                                    console.log('field', field);
+                                }
+                            }
+                        ]
                     }
                 }
 

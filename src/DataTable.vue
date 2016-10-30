@@ -30,7 +30,18 @@
       <tbody>
         <tr v-for="row in filteredRows | pagination currentPage dataTable.optionts.pageCount" track-by="$index">
           <td v-for="(key, item) in row" @click="editField(item, key)">
-            <span v-if="!item.editing">{{item.value}}</span>
+            <span v-if="!item.editing">
+              <template v-if="isButton(key)">
+                <button type="button"
+                        v-for="button in item.value"
+                        :class="button.class"
+                        @click="button.func($event, key, button)">{{button.text}}</button>
+              </template>
+              <template v-else>
+                <template v-if="isHTML(key)">{{{item.value}}}</template>
+                <template v-else>{{item.value}}</template>
+              </template>
+            </span>
             <template v-if="isEditable(item, key)">
               <input type="text" v-model="item.tmpValue">
               <button type="button" @click.stop="saveEdit(item)">Save</button>
@@ -288,6 +299,18 @@ export default {
       }else {
         return field.editable && this.dataTable.options.editable && field.editing && column.editable;
       }
+    },
+
+    isHTML(key) {
+      return this.dataTable.columns.filter((column) => {
+        return column.value === key;
+      })[0].isHTML;
+    },
+
+    isButton(key) {
+      return this.dataTable.columns.filter((column) => {
+        return column.value === key;
+      })[0].isButton;
     }
   }
 }

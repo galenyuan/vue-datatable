@@ -50,9 +50,9 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _vueDatatable = __webpack_require__(3);
+	var _DataTable = __webpack_require__(3);
 
-	var _vueDatatable2 = _interopRequireDefault(_vueDatatable);
+	var _DataTable2 = _interopRequireDefault(_DataTable);
 
 	var _chance = __webpack_require__(47);
 
@@ -92,6 +92,18 @@
 	                    text: 'Sex',
 	                    sortable: true,
 	                    editable: true
+	                }, {
+	                    value: 'link',
+	                    text: 'Link',
+	                    sortable: false,
+	                    editable: false,
+	                    isHTML: true
+	                }, {
+	                    value: 'action',
+	                    text: 'Action',
+	                    sortable: false,
+	                    editable: false,
+	                    isButton: true
 	                }],
 
 	                rows: [],
@@ -125,6 +137,30 @@
 	                    sex: {
 	                        value: chance.gender(),
 	                        editable: chance.bool
+	                    },
+
+	                    link: {
+	                        value: '<a href="' + chance.url() + '">' + chance.url() + '</a>'
+	                    },
+
+	                    action: {
+	                        value: [{
+	                            text: 'action1',
+	                            class: ['red'],
+	                            func: function func(event, column, field) {
+	                                console.log('event', event);
+	                                console.log('column', column);
+	                                console.log('field', field);
+	                            }
+	                        }, {
+	                            text: 'action2',
+	                            class: ['green'],
+	                            func: function func(event, column, field) {
+	                                console.log('event', event);
+	                                console.log('column', column);
+	                                console.log('field', field);
+	                            }
+	                        }]
 	                    }
 	                };
 
@@ -134,7 +170,7 @@
 
 
 	        components: {
-	            DataTable: _vueDatatable2.default
+	            DataTable: _DataTable2.default
 	        }
 	    });
 	})();
@@ -3096,7 +3132,7 @@
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
-	  console.warn("[vue-loader] node_modules/vue-datatable/src/DataTable.vue: named exports in *.vue files are ignored.")}
+	  console.warn("[vue-loader] ../src/DataTable.vue: named exports in *.vue files are ignored.")}
 	__vue_template__ = __webpack_require__(46)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
@@ -3131,8 +3167,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?id=_v-bfef3f54&scoped=true!./../../sass-loader/index.js!./../../vue-loader/lib/selector.js?type=style&index=0!./DataTable.vue", function() {
-				var newContent = require("!!./../../css-loader/index.js!./../../vue-loader/lib/style-rewriter.js?id=_v-bfef3f54&scoped=true!./../../sass-loader/index.js!./../../vue-loader/lib/selector.js?type=style&index=0!./DataTable.vue");
+			module.hot.accept("!!./../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../docs/node_modules/vue-loader/lib/style-rewriter.js?id=_v-6ede3379&scoped=true!./../node_modules/.npminstall/sass-loader/4.0.0/sass-loader/index.js!./../docs/node_modules/vue-loader/lib/selector.js?type=style&index=0!./DataTable.vue", function() {
+				var newContent = require("!!./../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../docs/node_modules/vue-loader/lib/style-rewriter.js?id=_v-6ede3379&scoped=true!./../node_modules/.npminstall/sass-loader/4.0.0/sass-loader/index.js!./../docs/node_modules/vue-loader/lib/selector.js?type=style&index=0!./DataTable.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3150,7 +3186,7 @@
 
 
 	// module
-	exports.push([module.id, ".v-table table[_v-bfef3f54] {\n  width: 100%;\n  border-collapse: collapse; }\n  .v-table table thead[_v-bfef3f54] {\n    border-bottom: 1px solid #111111; }\n    .v-table table thead th[_v-bfef3f54] {\n      position: relative;\n      padding: 10px 18px;\n      text-align: left;\n      background-color: #CBCCCD;\n      font-weight: bold; }\n      .v-table table thead th.sort[_v-bfef3f54] {\n        cursor: pointer; }\n        .v-table table thead th.sort[_v-bfef3f54]::after {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #FAFAFA;\n          right: 5px;\n          top: 50%;\n          margin-top: -10px; }\n        .v-table table thead th.sort[_v-bfef3f54]::before {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #FAFAFA;\n          right: 5px;\n          top: 50%;\n          margin-top: 3px;\n          -webkit-transform: rotate(180deg);\n                  transform: rotate(180deg); }\n        .v-table table thead th.sort.desc[_v-bfef3f54]::after {\n          display: none; }\n        .v-table table thead th.sort.desc[_v-bfef3f54]::before {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #333;\n          right: 5px;\n          top: 50%;\n          margin-top: -5px; }\n        .v-table table thead th.sort.asc[_v-bfef3f54]::before {\n          display: none; }\n        .v-table table thead th.sort.asc[_v-bfef3f54]::after {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #333;\n          right: 5px;\n          top: 50%;\n          margin-top: -5px; }\n  .v-table table tbody[_v-bfef3f54] {\n    border-bottom: 1px solid #111111; }\n    .v-table table tbody tr[_v-bfef3f54] {\n      background-color: #fff; }\n      .v-table table tbody tr td[_v-bfef3f54] {\n        text-align: left;\n        padding: 10px 8px; }\n      .v-table table tbody tr[_v-bfef3f54]:nth-child(odd) {\n        background-color: #f9f9f9; }\n        .v-table table tbody tr:nth-child(odd) td[_v-bfef3f54]:nth-child(1) {\n          background-color: #F1F1F2; }\n      .v-table table tbody tr:nth-child(even) td[_v-bfef3f54]:nth-child(1) {\n        background-color: #fafafa; }\n\n.v-table .v-table-header[_v-bfef3f54], .v-table .v-table-footer[_v-bfef3f54] {\n  display: table;\n  height: 40px;\n  width: 100%;\n  line-height: 40px; }\n  .v-table .v-table-header[_v-bfef3f54]::after, .v-table .v-table-footer[_v-bfef3f54]::after {\n    content: '';\n    clear: both; }\n\n.v-table .v-table-header-count[_v-bfef3f54] {\n  float: left; }\n\n.v-table .v-table-header-search[_v-bfef3f54] {\n  float: right; }\n\n.v-table .v-table-footer[_v-bfef3f54] {\n  margin-top: 10px; }\n  .v-table .v-table-footer-info[_v-bfef3f54] {\n    float: left; }\n  .v-table .v-table-footer-page[_v-bfef3f54] {\n    font-size: 0;\n    float: right; }\n    .v-table .v-table-footer-page span[_v-bfef3f54] {\n      display: inline-block;\n      font-size: 1rem;\n      padding: 10px 15px; }\n    .v-table .v-table-footer-page-btn[_v-bfef3f54] {\n      display: inline-block;\n      height: 40px;\n      box-sizing: border-box;\n      padding: 0px 15px;\n      line-height: 40px;\n      text-decoration: none;\n      color: #000;\n      border-radius: 2px;\n      font-size: 1rem; }\n      .v-table .v-table-footer-page-btn[_v-bfef3f54]:hover {\n        color: #fff;\n        border-top: 1px solid #333;\n        border-bottom: 1px solid #333;\n        background-color: #333; }\n      .v-table .v-table-footer-page-btn[_v-bfef3f54]:nth-last-child(1) {\n        margin-right: 0; }\n      .v-table .v-table-footer-page-btn.disabled[_v-bfef3f54] {\n        cursor: default;\n        color: #666; }\n        .v-table .v-table-footer-page-btn.disabled[_v-bfef3f54]:hover {\n          color: #666;\n          background-color: transparent;\n          border: none; }\n      .v-table .v-table-footer-page-btn.current[_v-bfef3f54] {\n        color: #000;\n        border: 1px solid #979797;\n        background-color: #fff;\n        background: -webkit-linear-gradient(top, #fff 0%, #dcdcdc 100%);\n        background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%); }\n", ""]);
+	exports.push([module.id, ".v-table table[_v-6ede3379] {\n  width: 100%;\n  border-collapse: collapse; }\n  .v-table table thead[_v-6ede3379] {\n    border-bottom: 1px solid #111111; }\n    .v-table table thead th[_v-6ede3379] {\n      position: relative;\n      padding: 10px 18px;\n      text-align: left;\n      background-color: #CBCCCD;\n      font-weight: bold; }\n      .v-table table thead th.sort[_v-6ede3379] {\n        cursor: pointer; }\n        .v-table table thead th.sort[_v-6ede3379]::after {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #FAFAFA;\n          right: 5px;\n          top: 50%;\n          margin-top: -10px; }\n        .v-table table thead th.sort[_v-6ede3379]::before {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #FAFAFA;\n          right: 5px;\n          top: 50%;\n          margin-top: 3px;\n          -webkit-transform: rotate(180deg);\n                  transform: rotate(180deg); }\n        .v-table table thead th.sort.desc[_v-6ede3379]::after {\n          display: none; }\n        .v-table table thead th.sort.desc[_v-6ede3379]::before {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #333;\n          right: 5px;\n          top: 50%;\n          margin-top: -5px; }\n        .v-table table thead th.sort.asc[_v-6ede3379]::before {\n          display: none; }\n        .v-table table thead th.sort.asc[_v-6ede3379]::after {\n          content: \"\";\n          position: absolute;\n          border-left: 5px solid transparent;\n          border-right: 5px solid transparent;\n          border-bottom: 10px solid #333;\n          right: 5px;\n          top: 50%;\n          margin-top: -5px; }\n  .v-table table tbody[_v-6ede3379] {\n    border-bottom: 1px solid #111111; }\n    .v-table table tbody tr[_v-6ede3379] {\n      background-color: #fff; }\n      .v-table table tbody tr td[_v-6ede3379] {\n        text-align: left;\n        padding: 10px 8px; }\n      .v-table table tbody tr[_v-6ede3379]:nth-child(odd) {\n        background-color: #f9f9f9; }\n        .v-table table tbody tr:nth-child(odd) td[_v-6ede3379]:nth-child(1) {\n          background-color: #F1F1F2; }\n      .v-table table tbody tr:nth-child(even) td[_v-6ede3379]:nth-child(1) {\n        background-color: #fafafa; }\n\n.v-table .v-table-header[_v-6ede3379], .v-table .v-table-footer[_v-6ede3379] {\n  display: table;\n  height: 40px;\n  width: 100%;\n  line-height: 40px; }\n  .v-table .v-table-header[_v-6ede3379]::after, .v-table .v-table-footer[_v-6ede3379]::after {\n    content: '';\n    clear: both; }\n\n.v-table .v-table-header-count[_v-6ede3379] {\n  float: left; }\n\n.v-table .v-table-header-search[_v-6ede3379] {\n  float: right; }\n\n.v-table .v-table-footer[_v-6ede3379] {\n  margin-top: 10px; }\n  .v-table .v-table-footer-info[_v-6ede3379] {\n    float: left; }\n  .v-table .v-table-footer-page[_v-6ede3379] {\n    font-size: 0;\n    float: right; }\n    .v-table .v-table-footer-page span[_v-6ede3379] {\n      display: inline-block;\n      font-size: 1rem;\n      padding: 10px 15px; }\n    .v-table .v-table-footer-page-btn[_v-6ede3379] {\n      display: inline-block;\n      height: 40px;\n      box-sizing: border-box;\n      padding: 0px 15px;\n      line-height: 40px;\n      text-decoration: none;\n      color: #000;\n      border-radius: 2px;\n      font-size: 1rem; }\n      .v-table .v-table-footer-page-btn[_v-6ede3379]:hover {\n        color: #fff;\n        border-top: 1px solid #333;\n        border-bottom: 1px solid #333;\n        background-color: #333; }\n      .v-table .v-table-footer-page-btn[_v-6ede3379]:nth-last-child(1) {\n        margin-right: 0; }\n      .v-table .v-table-footer-page-btn.disabled[_v-6ede3379] {\n        cursor: default;\n        color: #666; }\n        .v-table .v-table-footer-page-btn.disabled[_v-6ede3379]:hover {\n          color: #666;\n          background-color: transparent;\n          border: none; }\n      .v-table .v-table-footer-page-btn.current[_v-6ede3379] {\n        color: #000;\n        border: 1px solid #979797;\n        background-color: #fff;\n        background: -webkit-linear-gradient(top, #fff 0%, #dcdcdc 100%);\n        background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%); }\n", ""]);
 
 	// exports
 
@@ -3159,22 +3195,20 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	"use strict";
-
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
 	*/
 	// css base code, injected by the css-loader
-	module.exports = function () {
+	module.exports = function() {
 		var list = [];
 
 		// return the list of modules as css string
 		list.toString = function toString() {
 			var result = [];
-			for (var i = 0; i < this.length; i++) {
+			for(var i = 0; i < this.length; i++) {
 				var item = this[i];
-				if (item[2]) {
+				if(item[2]) {
 					result.push("@media " + item[2] + "{" + item[1] + "}");
 				} else {
 					result.push(item[1]);
@@ -3184,23 +3218,25 @@
 		};
 
 		// import a list of modules into the list
-		list.i = function (modules, mediaQuery) {
-			if (typeof modules === "string") modules = [[null, modules, ""]];
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
 			var alreadyImportedModules = {};
-			for (var i = 0; i < this.length; i++) {
+			for(var i = 0; i < this.length; i++) {
 				var id = this[i][0];
-				if (typeof id === "number") alreadyImportedModules[id] = true;
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
 			}
-			for (i = 0; i < modules.length; i++) {
+			for(i = 0; i < modules.length; i++) {
 				var item = modules[i];
 				// skip already imported module
 				// this implementation is not 100% perfect for weird media query combinations
 				//  when a module is imported multiple times with different media queries.
 				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if (mediaQuery && !item[2]) {
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
 						item[2] = mediaQuery;
-					} else if (mediaQuery) {
+					} else if(mediaQuery) {
 						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
 					}
 					list.push(item);
@@ -3209,6 +3245,7 @@
 		};
 		return list;
 	};
+
 
 /***/ },
 /* 7 */
@@ -3657,6 +3694,16 @@
 	      } else {
 	        return field.editable && this.dataTable.options.editable && field.editing && column.editable;
 	      }
+	    },
+	    isHTML: function isHTML(key) {
+	      return this.dataTable.columns.filter(function (column) {
+	        return column.value === key;
+	      })[0].isHTML;
+	    },
+	    isButton: function isButton(key) {
+	      return this.dataTable.columns.filter(function (column) {
+	        return column.value === key;
+	      })[0].isButton;
 	    }
 	  }
 	};
@@ -3665,15 +3712,11 @@
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
 	module.exports = { "default": __webpack_require__(10), __esModule: true };
 
 /***/ },
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
 
 	__webpack_require__(11);
 	module.exports = __webpack_require__(14).Object.assign;
@@ -3682,43 +3725,37 @@
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// 19.1.3.1 Object.assign(target, source)
 	var $export = __webpack_require__(12);
 
-	$export($export.S + $export.F, 'Object', { assign: __webpack_require__(27) });
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(27)});
 
 /***/ },
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var global    = __webpack_require__(13)
+	  , core      = __webpack_require__(14)
+	  , ctx       = __webpack_require__(15)
+	  , hide      = __webpack_require__(17)
+	  , PROTOTYPE = 'prototype';
 
-	var global = __webpack_require__(13),
-	    core = __webpack_require__(14),
-	    ctx = __webpack_require__(15),
-	    hide = __webpack_require__(17),
-	    PROTOTYPE = 'prototype';
-
-	var $export = function $export(type, name, source) {
-	  var IS_FORCED = type & $export.F,
-	      IS_GLOBAL = type & $export.G,
-	      IS_STATIC = type & $export.S,
-	      IS_PROTO = type & $export.P,
-	      IS_BIND = type & $export.B,
-	      IS_WRAP = type & $export.W,
-	      exports = IS_GLOBAL ? core : core[name] || (core[name] = {}),
-	      expProto = exports[PROTOTYPE],
-	      target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE],
-	      key,
-	      own,
-	      out;
-	  if (IS_GLOBAL) source = name;
-	  for (key in source) {
+	var $export = function(type, name, source){
+	  var IS_FORCED = type & $export.F
+	    , IS_GLOBAL = type & $export.G
+	    , IS_STATIC = type & $export.S
+	    , IS_PROTO  = type & $export.P
+	    , IS_BIND   = type & $export.B
+	    , IS_WRAP   = type & $export.W
+	    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
+	    , expProto  = exports[PROTOTYPE]
+	    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
+	    , key, own, out;
+	  if(IS_GLOBAL)source = name;
+	  for(key in source){
 	    // contains in native
 	    own = !IS_FORCED && target && target[key] !== undefined;
-	    if (own && key in exports) continue;
+	    if(own && key in exports)continue;
 	    // export native or passed
 	    out = own ? target[key] : source[key];
 	    // prevent global pollution for namespaces
@@ -3726,39 +3763,36 @@
 	    // bind timers to global for call from export context
 	    : IS_BIND && own ? ctx(out, global)
 	    // wrap global constructors for prevent change them in library
-	    : IS_WRAP && target[key] == out ? function (C) {
-	      var F = function F(a, b, c) {
-	        if (this instanceof C) {
-	          switch (arguments.length) {
-	            case 0:
-	              return new C();
-	            case 1:
-	              return new C(a);
-	            case 2:
-	              return new C(a, b);
-	          }return new C(a, b, c);
-	        }return C.apply(this, arguments);
+	    : IS_WRAP && target[key] == out ? (function(C){
+	      var F = function(a, b, c){
+	        if(this instanceof C){
+	          switch(arguments.length){
+	            case 0: return new C;
+	            case 1: return new C(a);
+	            case 2: return new C(a, b);
+	          } return new C(a, b, c);
+	        } return C.apply(this, arguments);
 	      };
 	      F[PROTOTYPE] = C[PROTOTYPE];
 	      return F;
-	      // make static versions for prototype methods
-	    }(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+	    // make static versions for prototype methods
+	    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
 	    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-	    if (IS_PROTO) {
+	    if(IS_PROTO){
 	      (exports.virtual || (exports.virtual = {}))[key] = out;
 	      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-	      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+	      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
 	    }
 	  }
 	};
 	// type bitmap
-	$export.F = 1; // forced
-	$export.G = 2; // global
-	$export.S = 4; // static
-	$export.P = 8; // proto
-	$export.B = 16; // bind
-	$export.W = 32; // wrap
-	$export.U = 64; // safe
+	$export.F = 1;   // forced
+	$export.G = 2;   // global
+	$export.S = 4;   // static
+	$export.P = 8;   // proto
+	$export.B = 16;  // bind
+	$export.W = 32;  // wrap
+	$export.U = 64;  // safe
 	$export.R = 128; // real proto method for `library` 
 	module.exports = $export;
 
@@ -3766,47 +3800,39 @@
 /* 13 */
 /***/ function(module, exports) {
 
-	'use strict';
-
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-	var global = module.exports = typeof window != 'undefined' && window.Math == Math ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-	if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+	var global = module.exports = typeof window != 'undefined' && window.Math == Math
+	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
 /* 14 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	var core = module.exports = { version: '2.4.0' };
-	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+	var core = module.exports = {version: '2.4.0'};
+	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// optional / simple context binding
 	var aFunction = __webpack_require__(16);
-	module.exports = function (fn, that, length) {
+	module.exports = function(fn, that, length){
 	  aFunction(fn);
-	  if (that === undefined) return fn;
-	  switch (length) {
-	    case 1:
-	      return function (a) {
-	        return fn.call(that, a);
-	      };
-	    case 2:
-	      return function (a, b) {
-	        return fn.call(that, a, b);
-	      };
-	    case 3:
-	      return function (a, b, c) {
-	        return fn.call(that, a, b, c);
-	      };
+	  if(that === undefined)return fn;
+	  switch(length){
+	    case 1: return function(a){
+	      return fn.call(that, a);
+	    };
+	    case 2: return function(a, b){
+	      return fn.call(that, a, b);
+	    };
+	    case 3: return function(a, b, c){
+	      return fn.call(that, a, b, c);
+	    };
 	  }
-	  return function () /* ...args */{
+	  return function(/* ...args */){
 	    return fn.apply(that, arguments);
 	  };
 	};
@@ -3815,10 +3841,8 @@
 /* 16 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	module.exports = function (it) {
-	  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+	module.exports = function(it){
+	  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
 	  return it;
 	};
 
@@ -3826,13 +3850,11 @@
 /* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var dP = __webpack_require__(18),
-	    createDesc = __webpack_require__(26);
-	module.exports = __webpack_require__(22) ? function (object, key, value) {
+	var dP         = __webpack_require__(18)
+	  , createDesc = __webpack_require__(26);
+	module.exports = __webpack_require__(22) ? function(object, key, value){
 	  return dP.f(object, key, createDesc(1, value));
-	} : function (object, key, value) {
+	} : function(object, key, value){
 	  object[key] = value;
 	  return object;
 	};
@@ -3841,22 +3863,20 @@
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var anObject       = __webpack_require__(19)
+	  , IE8_DOM_DEFINE = __webpack_require__(21)
+	  , toPrimitive    = __webpack_require__(25)
+	  , dP             = Object.defineProperty;
 
-	var anObject = __webpack_require__(19),
-	    IE8_DOM_DEFINE = __webpack_require__(21),
-	    toPrimitive = __webpack_require__(25),
-	    dP = Object.defineProperty;
-
-	exports.f = __webpack_require__(22) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+	exports.f = __webpack_require__(22) ? Object.defineProperty : function defineProperty(O, P, Attributes){
 	  anObject(O);
 	  P = toPrimitive(P, true);
 	  anObject(Attributes);
-	  if (IE8_DOM_DEFINE) try {
+	  if(IE8_DOM_DEFINE)try {
 	    return dP(O, P, Attributes);
-	  } catch (e) {/* empty */}
-	  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
-	  if ('value' in Attributes) O[P] = Attributes.value;
+	  } catch(e){ /* empty */ }
+	  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
+	  if('value' in Attributes)O[P] = Attributes.value;
 	  return O;
 	};
 
@@ -3864,11 +3884,9 @@
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	var isObject = __webpack_require__(20);
-	module.exports = function (it) {
-	  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+	module.exports = function(it){
+	  if(!isObject(it))throw TypeError(it + ' is not an object!');
 	  return it;
 	};
 
@@ -3876,49 +3894,35 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-	module.exports = function (it) {
-	  return (typeof it === 'undefined' ? 'undefined' : _typeof(it)) === 'object' ? it !== null : typeof it === 'function';
+	module.exports = function(it){
+	  return typeof it === 'object' ? it !== null : typeof it === 'function';
 	};
 
 /***/ },
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	module.exports = !__webpack_require__(22) && !__webpack_require__(23)(function () {
-	  return Object.defineProperty(__webpack_require__(24)('div'), 'a', { get: function get() {
-	      return 7;
-	    } }).a != 7;
+	module.exports = !__webpack_require__(22) && !__webpack_require__(23)(function(){
+	  return Object.defineProperty(__webpack_require__(24)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
 /***/ },
 /* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(23)(function () {
-	  return Object.defineProperty({}, 'a', { get: function get() {
-	      return 7;
-	    } }).a != 7;
+	module.exports = !__webpack_require__(23)(function(){
+	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
 /***/ },
 /* 23 */
 /***/ function(module, exports) {
 
-	"use strict";
-
-	module.exports = function (exec) {
+	module.exports = function(exec){
 	  try {
 	    return !!exec();
-	  } catch (e) {
+	  } catch(e){
 	    return true;
 	  }
 	};
@@ -3927,14 +3931,11 @@
 /* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var isObject = __webpack_require__(20),
-	    document = __webpack_require__(13).document
-	// in old IE typeof document.createElement is 'object'
-	,
-	    is = isObject(document) && isObject(document.createElement);
-	module.exports = function (it) {
+	var isObject = __webpack_require__(20)
+	  , document = __webpack_require__(13).document
+	  // in old IE typeof document.createElement is 'object'
+	  , is = isObject(document) && isObject(document.createElement);
+	module.exports = function(it){
 	  return is ? document.createElement(it) : {};
 	};
 
@@ -3942,18 +3943,16 @@
 /* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// 7.1.1 ToPrimitive(input [, PreferredType])
 	var isObject = __webpack_require__(20);
 	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
 	// and the second argument - flag - preferred type is a string
-	module.exports = function (it, S) {
-	  if (!isObject(it)) return it;
+	module.exports = function(it, S){
+	  if(!isObject(it))return it;
 	  var fn, val;
-	  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-	  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
-	  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+	  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+	  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
+	  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
 	  throw TypeError("Can't convert object to primitive value");
 	};
 
@@ -3961,14 +3960,12 @@
 /* 26 */
 /***/ function(module, exports) {
 
-	"use strict";
-
-	module.exports = function (bitmap, value) {
+	module.exports = function(bitmap, value){
 	  return {
-	    enumerable: !(bitmap & 1),
+	    enumerable  : !(bitmap & 1),
 	    configurable: !(bitmap & 2),
-	    writable: !(bitmap & 4),
-	    value: value
+	    writable    : !(bitmap & 4),
+	    value       : value
 	  };
 	};
 
@@ -3978,55 +3975,47 @@
 
 	'use strict';
 	// 19.1.2.1 Object.assign(target, source, ...)
-
-	var getKeys = __webpack_require__(28),
-	    gOPS = __webpack_require__(43),
-	    pIE = __webpack_require__(44),
-	    toObject = __webpack_require__(45),
-	    IObject = __webpack_require__(32),
-	    $assign = Object.assign;
+	var getKeys  = __webpack_require__(28)
+	  , gOPS     = __webpack_require__(43)
+	  , pIE      = __webpack_require__(44)
+	  , toObject = __webpack_require__(45)
+	  , IObject  = __webpack_require__(32)
+	  , $assign  = Object.assign;
 
 	// should work with symbols and should have deterministic property order (V8 bug)
-	module.exports = !$assign || __webpack_require__(23)(function () {
-	  var A = {},
-	      B = {},
-	      S = Symbol(),
-	      K = 'abcdefghijklmnopqrst';
+	module.exports = !$assign || __webpack_require__(23)(function(){
+	  var A = {}
+	    , B = {}
+	    , S = Symbol()
+	    , K = 'abcdefghijklmnopqrst';
 	  A[S] = 7;
-	  K.split('').forEach(function (k) {
-	    B[k] = k;
-	  });
+	  K.split('').forEach(function(k){ B[k] = k; });
 	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-	}) ? function assign(target, source) {
-	  // eslint-disable-line no-unused-vars
-	  var T = toObject(target),
-	      aLen = arguments.length,
-	      index = 1,
-	      getSymbols = gOPS.f,
-	      isEnum = pIE.f;
-	  while (aLen > index) {
-	    var S = IObject(arguments[index++]),
-	        keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S),
-	        length = keys.length,
-	        j = 0,
-	        key;
-	    while (length > j) {
-	      if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
-	    }
-	  }return T;
+	}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
+	  var T     = toObject(target)
+	    , aLen  = arguments.length
+	    , index = 1
+	    , getSymbols = gOPS.f
+	    , isEnum     = pIE.f;
+	  while(aLen > index){
+	    var S      = IObject(arguments[index++])
+	      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
+	      , length = keys.length
+	      , j      = 0
+	      , key;
+	    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+	  } return T;
 	} : $assign;
 
 /***/ },
 /* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-	var $keys = __webpack_require__(29),
-	    enumBugKeys = __webpack_require__(42);
+	var $keys       = __webpack_require__(29)
+	  , enumBugKeys = __webpack_require__(42);
 
-	module.exports = Object.keys || function keys(O) {
+	module.exports = Object.keys || function keys(O){
 	  return $keys(O, enumBugKeys);
 	};
 
@@ -4034,36 +4023,30 @@
 /* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var has          = __webpack_require__(30)
+	  , toIObject    = __webpack_require__(31)
+	  , arrayIndexOf = __webpack_require__(35)(false)
+	  , IE_PROTO     = __webpack_require__(39)('IE_PROTO');
 
-	var has = __webpack_require__(30),
-	    toIObject = __webpack_require__(31),
-	    arrayIndexOf = __webpack_require__(35)(false),
-	    IE_PROTO = __webpack_require__(39)('IE_PROTO');
-
-	module.exports = function (object, names) {
-	  var O = toIObject(object),
-	      i = 0,
-	      result = [],
-	      key;
-	  for (key in O) {
-	    if (key != IE_PROTO) has(O, key) && result.push(key);
-	  } // Don't enum bug & hidden keys
-	  while (names.length > i) {
-	    if (has(O, key = names[i++])) {
-	      ~arrayIndexOf(result, key) || result.push(key);
-	    }
-	  }return result;
+	module.exports = function(object, names){
+	  var O      = toIObject(object)
+	    , i      = 0
+	    , result = []
+	    , key;
+	  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
+	  // Don't enum bug & hidden keys
+	  while(names.length > i)if(has(O, key = names[i++])){
+	    ~arrayIndexOf(result, key) || result.push(key);
+	  }
+	  return result;
 	};
 
 /***/ },
 /* 30 */
 /***/ function(module, exports) {
 
-	"use strict";
-
 	var hasOwnProperty = {}.hasOwnProperty;
-	module.exports = function (it, key) {
+	module.exports = function(it, key){
 	  return hasOwnProperty.call(it, key);
 	};
 
@@ -4071,12 +4054,10 @@
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(32),
-	    defined = __webpack_require__(34);
-	module.exports = function (it) {
+	var IObject = __webpack_require__(32)
+	  , defined = __webpack_require__(34);
+	module.exports = function(it){
 	  return IObject(defined(it));
 	};
 
@@ -4084,11 +4065,9 @@
 /* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
 	var cof = __webpack_require__(33);
-	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
 	  return cof(it) == 'String' ? it.split('') : Object(it);
 	};
 
@@ -4096,11 +4075,9 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	"use strict";
-
 	var toString = {}.toString;
 
-	module.exports = function (it) {
+	module.exports = function(it){
 	  return toString.call(it).slice(8, -1);
 	};
 
@@ -4108,11 +4085,9 @@
 /* 34 */
 /***/ function(module, exports) {
 
-	"use strict";
-
 	// 7.2.1 RequireObjectCoercible(argument)
-	module.exports = function (it) {
-	  if (it == undefined) throw TypeError("Can't call method on  " + it);
+	module.exports = function(it){
+	  if(it == undefined)throw TypeError("Can't call method on  " + it);
 	  return it;
 	};
 
@@ -4120,29 +4095,25 @@
 /* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// false -> Array#indexOf
 	// true  -> Array#includes
-	var toIObject = __webpack_require__(31),
-	    toLength = __webpack_require__(36),
-	    toIndex = __webpack_require__(38);
-	module.exports = function (IS_INCLUDES) {
-	  return function ($this, el, fromIndex) {
-	    var O = toIObject($this),
-	        length = toLength(O.length),
-	        index = toIndex(fromIndex, length),
-	        value;
+	var toIObject = __webpack_require__(31)
+	  , toLength  = __webpack_require__(36)
+	  , toIndex   = __webpack_require__(38);
+	module.exports = function(IS_INCLUDES){
+	  return function($this, el, fromIndex){
+	    var O      = toIObject($this)
+	      , length = toLength(O.length)
+	      , index  = toIndex(fromIndex, length)
+	      , value;
 	    // Array#includes uses SameValueZero equality algorithm
-	    if (IS_INCLUDES && el != el) while (length > index) {
+	    if(IS_INCLUDES && el != el)while(length > index){
 	      value = O[index++];
-	      if (value != value) return true;
-	      // Array#toIndex ignores holes, Array#includes - not
-	    } else for (; length > index; index++) {
-	      if (IS_INCLUDES || index in O) {
-	        if (O[index] === el) return IS_INCLUDES || index || 0;
-	      }
-	    }return !IS_INCLUDES && -1;
+	      if(value != value)return true;
+	    // Array#toIndex ignores holes, Array#includes - not
+	    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
+	      if(O[index] === el)return IS_INCLUDES || index || 0;
+	    } return !IS_INCLUDES && -1;
 	  };
 	};
 
@@ -4150,12 +4121,10 @@
 /* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// 7.1.15 ToLength
-	var toInteger = __webpack_require__(37),
-	    min = Math.min;
-	module.exports = function (it) {
+	var toInteger = __webpack_require__(37)
+	  , min       = Math.min;
+	module.exports = function(it){
 	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 	};
 
@@ -4163,12 +4132,10 @@
 /* 37 */
 /***/ function(module, exports) {
 
-	"use strict";
-
 	// 7.1.4 ToInteger
-	var ceil = Math.ceil,
-	    floor = Math.floor;
-	module.exports = function (it) {
+	var ceil  = Math.ceil
+	  , floor = Math.floor;
+	module.exports = function(it){
 	  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 	};
 
@@ -4176,12 +4143,10 @@
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var toInteger = __webpack_require__(37),
-	    max = Math.max,
-	    min = Math.min;
-	module.exports = function (index, length) {
+	var toInteger = __webpack_require__(37)
+	  , max       = Math.max
+	  , min       = Math.min;
+	module.exports = function(index, length){
 	  index = toInteger(index);
 	  return index < 0 ? max(index + length, 0) : min(index, length);
 	};
@@ -4190,11 +4155,9 @@
 /* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var shared = __webpack_require__(40)('keys'),
-	    uid = __webpack_require__(41);
-	module.exports = function (key) {
+	var shared = __webpack_require__(40)('keys')
+	  , uid    = __webpack_require__(41);
+	module.exports = function(key){
 	  return shared[key] || (shared[key] = uid(key));
 	};
 
@@ -4202,12 +4165,10 @@
 /* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var global = __webpack_require__(13),
-	    SHARED = '__core-js_shared__',
-	    store = global[SHARED] || (global[SHARED] = {});
-	module.exports = function (key) {
+	var global = __webpack_require__(13)
+	  , SHARED = '__core-js_shared__'
+	  , store  = global[SHARED] || (global[SHARED] = {});
+	module.exports = function(key){
 	  return store[key] || (store[key] = {});
 	};
 
@@ -4215,11 +4176,9 @@
 /* 41 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	var id = 0,
-	    px = Math.random();
-	module.exports = function (key) {
+	var id = 0
+	  , px = Math.random();
+	module.exports = function(key){
 	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 	};
 
@@ -4227,16 +4186,14 @@
 /* 42 */
 /***/ function(module, exports) {
 
-	'use strict';
-
 	// IE 8- don't enum bug keys
-	module.exports = 'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'.split(',');
+	module.exports = (
+	  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+	).split(',');
 
 /***/ },
 /* 43 */
 /***/ function(module, exports) {
-
-	"use strict";
 
 	exports.f = Object.getOwnPropertySymbols;
 
@@ -4244,19 +4201,15 @@
 /* 44 */
 /***/ function(module, exports) {
 
-	"use strict";
-
 	exports.f = {}.propertyIsEnumerable;
 
 /***/ },
 /* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	// 7.1.13 ToObject(argument)
 	var defined = __webpack_require__(34);
-	module.exports = function (it) {
+	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
@@ -4264,7 +4217,7 @@
 /* 46 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"v-table\" _v-bfef3f54=\"\">\n  <div class=\"v-table-header\" _v-bfef3f54=\"\">\n    <div class=\"v-table-header-count\" _v-bfef3f54=\"\">\n      Show\n      <select v-model=\"dataTable.options.pageCount\" @change=\"onChangePageCount()\" _v-bfef3f54=\"\">\n        <option _v-bfef3f54=\"\">5</option>\n        <option _v-bfef3f54=\"\">10</option>\n        <option _v-bfef3f54=\"\">15</option>\n        <option _v-bfef3f54=\"\">20</option>\n      </select>\n      items each page\n    </div>\n\n    <div class=\"v-table-header-search\" _v-bfef3f54=\"\">\n      Search <input type=\"text\" v-model=\"searchBy\" _v-bfef3f54=\"\">\n    </div>\n  </div>\n  <table _v-bfef3f54=\"\">\n    <thead _v-bfef3f54=\"\">\n      <tr _v-bfef3f54=\"\">\n        <th v-for=\"column in dataTable.columns\" @click=\"sortBy(column)\" :class=\"{sort: isSortable(column), \n                     desc: sort.sortBy === column.value &amp;&amp; sort.desc,\n                     asc: sort.sortBy === column.value &amp;&amp; !sort.desc}\" _v-bfef3f54=\"\">{{column.text}}</th>\n      </tr>\n    </thead>\n\n    <tbody _v-bfef3f54=\"\">\n      <tr v-for=\"row in filteredRows | pagination currentPage dataTable.optionts.pageCount\" track-by=\"$index\" _v-bfef3f54=\"\">\n        <td v-for=\"(key, item) in row\" @click=\"editField(item, key)\" _v-bfef3f54=\"\">\n          <span v-if=\"!item.editing\" _v-bfef3f54=\"\">{{item.value}}</span>\n          <template v-if=\"isEditable(item, key)\">\n            <input type=\"text\" v-model=\"item.tmpValue\" _v-bfef3f54=\"\">\n            <button type=\"button\" @click.stop=\"saveEdit(item)\" _v-bfef3f54=\"\">Save</button>\n            <button type=\"button\" @click.stop=\"cancelEdit(item)\" _v-bfef3f54=\"\">Cancel</button>\n          </template>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n  <div class=\"v-table-footer\" _v-bfef3f54=\"\">\n    <div class=\"v-table-footer-info\" _v-bfef3f54=\"\">\n      Showing {{firstRow + 1}} to {{lastRow}} of {{filteredRows.length}} items\n    </div>\n\n    <div class=\"v-table-footer-page\" v-if=\"lastPage !== 1\" _v-bfef3f54=\"\">\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" @click=\"togglePage('prev')\" :class=\"{disabled: currentPage == 1}\" _v-bfef3f54=\"\">Prev</a>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" :class=\"{current: currentPage == 1}\" @click=\"togglePage(1)\" _v-bfef3f54=\"\">1</a>\n      <span v-if=\"currentPage >= 5 &amp;&amp; lastPage > 10\" _v-bfef3f54=\"\">...</span>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" :class=\"{current: currentPage == page + 1}\" @click=\"togglePage(page + 1)\" v-for=\"page in centerPartPage\" _v-bfef3f54=\"\">{{page + 1}}</a>\n      <span v-if=\"lastPage > 10 &amp;&amp; lastPage - currentPage > 5\" _v-bfef3f54=\"\">...</span>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" :class=\"{current: currentPage == page + 1}\" @click=\"togglePage(page + 1)\" v-for=\"page in lastPartPage\" _v-bfef3f54=\"\">{{page + 1}}</a>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" @click=\"togglePage('next')\" :class=\"{disabled: currentPage == lastPage}\" _v-bfef3f54=\"\">Next</a>\n    </div>\n  </div>\n</div>\n";
+	module.exports = "\n<div class=\"v-table\" _v-6ede3379=\"\">\n  <div class=\"v-table-header\" _v-6ede3379=\"\">\n    <div class=\"v-table-header-count\" _v-6ede3379=\"\">\n      Show\n      <select v-model=\"dataTable.options.pageCount\" @change=\"onChangePageCount()\" _v-6ede3379=\"\">\n        <option _v-6ede3379=\"\">5</option>\n        <option _v-6ede3379=\"\">10</option>\n        <option _v-6ede3379=\"\">15</option>\n        <option _v-6ede3379=\"\">20</option>\n      </select>\n      items each page\n    </div>\n\n    <div class=\"v-table-header-search\" _v-6ede3379=\"\">\n      Search <input type=\"text\" v-model=\"searchBy\" _v-6ede3379=\"\">\n    </div>\n  </div>\n  <table _v-6ede3379=\"\">\n    <thead _v-6ede3379=\"\">\n      <tr _v-6ede3379=\"\">\n        <th v-for=\"column in dataTable.columns\" @click=\"sortBy(column)\" :class=\"{sort: isSortable(column), \n                     desc: sort.sortBy === column.value &amp;&amp; sort.desc,\n                     asc: sort.sortBy === column.value &amp;&amp; !sort.desc}\" _v-6ede3379=\"\">{{column.text}}</th>\n      </tr>\n    </thead>\n\n    <tbody _v-6ede3379=\"\">\n      <tr v-for=\"row in filteredRows | pagination currentPage dataTable.optionts.pageCount\" track-by=\"$index\" _v-6ede3379=\"\">\n        <td v-for=\"(key, item) in row\" @click=\"editField(item, key)\" _v-6ede3379=\"\">\n          <span v-if=\"!item.editing\" _v-6ede3379=\"\">\n            <template v-if=\"isButton(key)\">\n              <button type=\"button\" v-for=\"button in item.value\" :class=\"button.class\" @click=\"button.func($event, key, button)\" _v-6ede3379=\"\">{{button.text}}</button>\n            </template>\n            <template v-else=\"\">\n              <template v-if=\"isHTML(key)\">{{{item.value}}}</template>\n              <template v-else=\"\">{{item.value}}</template>\n            </template>\n          </span>\n          <template v-if=\"isEditable(item, key)\">\n            <input type=\"text\" v-model=\"item.tmpValue\" _v-6ede3379=\"\">\n            <button type=\"button\" @click.stop=\"saveEdit(item)\" _v-6ede3379=\"\">Save</button>\n            <button type=\"button\" @click.stop=\"cancelEdit(item)\" _v-6ede3379=\"\">Cancel</button>\n          </template>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n\n  <div class=\"v-table-footer\" _v-6ede3379=\"\">\n    <div class=\"v-table-footer-info\" _v-6ede3379=\"\">\n      Showing {{firstRow + 1}} to {{lastRow}} of {{filteredRows.length}} items\n    </div>\n\n    <div class=\"v-table-footer-page\" v-if=\"lastPage !== 1\" _v-6ede3379=\"\">\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" @click=\"togglePage('prev')\" :class=\"{disabled: currentPage == 1}\" _v-6ede3379=\"\">Prev</a>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" :class=\"{current: currentPage == 1}\" @click=\"togglePage(1)\" _v-6ede3379=\"\">1</a>\n      <span v-if=\"currentPage >= 5 &amp;&amp; lastPage > 10\" _v-6ede3379=\"\">...</span>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" :class=\"{current: currentPage == page + 1}\" @click=\"togglePage(page + 1)\" v-for=\"page in centerPartPage\" _v-6ede3379=\"\">{{page + 1}}</a>\n      <span v-if=\"lastPage > 10 &amp;&amp; lastPage - currentPage > 5\" _v-6ede3379=\"\">...</span>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" :class=\"{current: currentPage == page + 1}\" @click=\"togglePage(page + 1)\" v-for=\"page in lastPartPage\" _v-6ede3379=\"\">{{page + 1}}</a>\n      <a class=\"v-table-footer-page-btn\" href=\"javascript:;\" @click=\"togglePage('next')\" :class=\"{disabled: currentPage == lastPage}\" _v-6ede3379=\"\">Next</a>\n    </div>\n  </div>\n</div>\n";
 
 /***/ },
 /* 47 */

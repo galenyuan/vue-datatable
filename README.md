@@ -21,13 +21,13 @@ export default {
     return {
       tableData: {
         options: {
-        	//Global sort option
+        	// Global sort option
           sortable: true,
-          //Global edit option
+          // Global edit option
           editable: true,
-          //How many items will be shown in each page
+          // How many items will be shown in each page
           pageCount: 10,
-          //Callback of change page
+          // Callback of change page
           onPageChanged(page) {
             console.log(page);
           }
@@ -37,21 +37,56 @@ export default {
           {
             value: 'id',
             text: 'ID',
-            //If this column is sortable
+            // If this column is sortable
             sortable: true,
-            //If this column is editable
-            editable: false
+            // If this column is editable
+            editable: false,
+            // Render this column as HTML or not
+            isHTML: false,
+            // Render this column as button array or not
+            isButton: false
+          },
+          {
+          	value: 'html',
+          	text: 'HTML',
+          	sortable: false,
+          	editable: false,
+          	isHTML: true,
+          	isButton: false
+          },
+          {
+          	value: 'button',
+          	text: 'Button',
+          	sortable: false,
+          	editable: false,
+          	isHTML: false,
+          	isButton: true
           }
         ],
 
         rows: [
-					{
-						id: {
-							value: 1,
-							//If this field is editable
-							editable: false
+			{
+				id: {
+					value: 1,
+					// If this field is editable
+					editable: false
+				},
+				html: {
+					value: '<a href="https://www.github.com">'GitHub</a>
+				},
+				button: {
+					value: [
+						// Text of this button
+						text: 'Button',
+						// Classes of this button
+						class: ['button'],
+						// Click function, 3 arguments: event, column text and current field object
+						func: function(event, column, field) {
+						
 						}
-					}
+					]
+				}
+			}
         ]
       }
     }
